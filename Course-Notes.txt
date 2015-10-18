@@ -1,0 +1,26 @@
+HTML Documentation
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction
+
+About DOM
+https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+
+CSS tutorial
+http://docs.webplatform.org/wiki/css
+
+Website performance Optimization udacity Course
+https://www.udacity.com/course/website-performance-optimization--ud884
+
+jQuer website
+http://jquery.com/
+
+Mozilla Developer Network (javascript)
+https://developer.mozilla.org/en-US/
+
+Chrome jscript console
+https://developer.chrome.com/devtools/docs/console
+
+string.replace
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+
+jQuery.append
+http://api.jquery.com/append/
