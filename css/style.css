@@ -1,3 +1,11 @@
+* {
+  border: solid;
+  border-color: blue;
+  border-width: 1px;
+  margin: 5px;
+  padding: 5px;
+}
+
 body,
 div,
 ul,

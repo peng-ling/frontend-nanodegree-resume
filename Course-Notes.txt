@@ -23,4 +23,12 @@ string.replace
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 
 jQuery.append
-http://api.jquery.com/append/
+  http://api.jquery.com/append/
+
+true / false JavaScript
+http://opensourcehacker.com/2012/10/17/true-lies-and-falsy-values-in-python-and-javascript/
+
+--JSON----------
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
+http://json.org/
