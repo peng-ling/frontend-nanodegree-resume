@@ -1,6 +1,3 @@
-//var Name = "Paul Engling";
-//var Role = "Dipl. Ing.";
-
 var bio = {
   "Name": "Paul Engling",
   "Role": "Dipl. Ing.",
@@ -16,15 +13,67 @@ var bio = {
   "Skills": ["A","B","C"]
 }
 
-var work = {};
-work.jobposition = "Consultant";
-work.employer = "ACL";
-work.years = "2014 - now";
-work.location= "Frankfurt am Main";
+var work = {
+  "jobs":[
+    {
+"jobposition" : "Consultant",
+"employer" : "ACL",
+"years" : "09/2014 - heute",
+"location": "Frankfurt am Main"
+},
+{
+"jobposition" : "Consultant",
+"employer" : "Princeton Financial systems GmbH",
+"years" : "09/2011 – 09/2014",
+"location": "Frankfurt am Main"
+}
+]
+}
 
-var education = {};
-education["School"] = "Fachhochschule Wiesbaden";
+var projects = {
+  "projects":[
+    {
+      "name":"Bla",
+      "description":"Bla",
+      "year":2014
+    },
+    {
+      "name":"Bla 2",
+      "description":"Bla",
+      "year":2014
+    }
+  ]
+};
 
+var education = {
+  "schools":[
+  {
+      "name":"Fachhochschule Wiesbaden",
+      "dates":2002,
+      "city":"Wiesbaden",
+      "degree":"Bauingenieur",
+      "major":"Diplom Bauingenieur (FH)"
+  },
+  {
+      "name":"Friedrich-Ebert-Schule Wiesbaden",
+      "city":"Wiesbaden",
+      "dates":1993,
+      "degree":"Fachhochschulreife",
+      "major":"Maschinenbau"
+  }
+],
+"online courses":[
+  {
+  "name":"Udacity",
+  "city":"world wide web",
+  "dates": 2015,
+  "degree":"Nano Degree Web Frontend Developer",
+  "major":"Web Frontend Developer"
+}
+]
+};
+
+/*
 var formattedName = HTMLheaderName.replace("%data%", bio.Name);
 var formattedRole = HTMLheaderRole.replace("%data%", bio.Role);
 var formatedMobile = HTMLcontactGeneric.replace("%data%", bio.Contacts.mobile);
@@ -50,3 +99,4 @@ $("#workExperience").append(formatedYears);
 $("#workExperience").append(formatedWorkLocation);
 $("#header").append(HTMLschoolStart);
 $("#education").append(formatedSchoolName);
+*/

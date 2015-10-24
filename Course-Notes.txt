@@ -32,3 +32,11 @@ http://opensourcehacker.com/2012/10/17/true-lies-and-falsy-values-in-python-and-
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON
 http://json.org/
+http://www.copterlabs.com/blog/json-what-it-is-how-it-works-how-to-use-it/
+
+-JSON linter
+http://jsonlint.com/
+https://jsonformatter.curiousconcept.com/
+
+--AJAX-----------
+https://en.wikipedia.org/wiki/Ajax_(programming)
