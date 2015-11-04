@@ -1,12 +1,12 @@
 var bio = {
   "Name": "Paul Engling",
   "Role": "Dipl. Ing.",
-  "Contacts": {
+  "contacts": {
     "mobile": "650-555-555",
     "email": "no@realemail.com",
     "github": "peng-ling",
     "twitter": "pengling",
-    "location": "Germany"
+    "location": "New York City"
   },
   "bioPic": "images/fry.jpg",
   "welcomeMessage": "Hello World, here I am",
@@ -33,11 +33,13 @@ var projects = {
     "project": [{
       "name": "Bla",
       "description": "Bla",
-      "year": 2014
+      "year": 2014,
+      "projectImage": "images/fry.jpg"
     }, {
       "name": "Bla 2",
       "description": "Bla",
-      "year": 2014
+      "year": 2014,
+      "projectImage": "images/fry.jpg"
     }],
     "display": function() {
       for (project in projects.project) {
@@ -45,6 +47,7 @@ var projects = {
         $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.project[project].name));
         $(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.project[project].year));
         $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.project[project].description));
+        $(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.project[project].projectImage));
         }
       }
     };
@@ -53,19 +56,20 @@ var projects = {
       "schools": [{
         "name": "Fachhochschule Wiesbaden",
         "dates": 2002,
-        "city": "Wiesbaden",
+        "location": "Wiesbaden",
         "degree": "Bauingenieur",
         "major": "Diplom Bauingenieur (FH)"
       }, {
         "name": "Friedrich-Ebert-Schule Wiesbaden",
         "city": "Wiesbaden",
         "dates": 1993,
+        "location": "Wiesbaden",
         "degree": "Fachhochschulreife",
         "major": "Maschinenbau"
       }],
       "online courses": [{
         "name": "Udacity",
-        "city": "world wide web",
+        "location": "world wide web",
         "dates": 2015,
         "degree": "Nano Degree Web Frontend Developer",
         "major": "Web Frontend Developer"
@@ -73,7 +77,9 @@ var projects = {
     };
 
 
-    $("#header").append(HTMLheaderName);
+    $("#header").append(HTMLheaderName.replace("%data%",bio.Name));
+    $("#header").prepend(HTMLheaderRole.replace("%data%", bio.Role));
+    $("#topContacts").prepend(HTMLcontactGeneric.replace("%data%", bio.contacts.mobile));
 
     //if (bio.skills.length > 0)...
 
@@ -102,6 +108,8 @@ var projects = {
     $(document).click(function(loc) {
       console.log("x: " + loc.pageX + " y: " + loc.pageY);
     });
+
+    $("#mapDiv").append(googleMap);
 
     $("#main").append(internationalizeButton);
 
