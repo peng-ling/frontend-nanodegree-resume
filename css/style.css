@@ -149,7 +149,7 @@ a {
   padding: 10px;
 }
 
-.flex-box {
+.flex-box-column {
   display: -webkit-flex;
   display: flex;
   flex-direction: column;
