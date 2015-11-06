@@ -25,9 +25,6 @@ bio.displaycontacts = function() {
   };
 }
 
-bio.displaycontacts();
-
-
 var work = {
   "jobs": [{
     "jobposition": "Consultant",
@@ -104,19 +101,16 @@ education.display = function() {
   };
 }
 
-education.display();
-
-
-//if (bio.skills.length > 0)...
-
+bio.displayskills = function (){
 if (bio.Skills.length > 0) {
   $("#header").append(HTMLskillsStart);
   for (skill in bio.Skills) {
     $("#skills").append(HTMLskills.replace("%data%", bio.Skills[skill]));
   };
 };
+}
 
-function myfunc() {
+work.display = function() {
   if (work.jobs.length > 0) {
     for (job in work.jobs) {
       $("#workExperience").append(HTMLworkStart);
@@ -129,7 +123,11 @@ function myfunc() {
   };
 }
 
+bio.displaycontacts();
+bio.displayskills();
+education.display();
 projects.display();
+work.display();
 
 $(document).click(function(loc) {
   console.log("x: " + loc.pageX + " y: " + loc.pageY);
