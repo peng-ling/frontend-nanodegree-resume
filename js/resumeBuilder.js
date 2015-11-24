@@ -5,8 +5,8 @@ var bio = {
     "mobile": "650-555-555",
     "email": "no@realemail.com",
     "github": "peng-ling",
-    "twitter": "pengling",
-    "location": "New York City"
+    "twitter": "paul.engling",
+    "location": "Wiesbaden"
   },
   "bioPic": "images/paul.jpg",
   "welcomeMessage": "Hello World, here I am",
@@ -19,39 +19,103 @@ bio.displaycontacts = function() {
   $("#header").prepend(HTMLheaderRole.replace("%data%", bio.Role));
   for (contact in bio.contacts) {
     var formatedHTMLcontactGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts[contact]);
-    console.log(contact);
     formatedHTMLcontactGeneric = formatedHTMLcontactGeneric.replace("%contact%", contact);
     $("#topContacts").prepend(formatedHTMLcontactGeneric);
+    $("#footerContacts").prepend(formatedHTMLcontactGeneric);
+  };
+}
+
+bio.displayskills = function() {
+  if (bio.Skills.length > 0) {
+    $("#header").append(HTMLskillsStart);
+    for (skill in bio.Skills) {
+      $("#skills").append(HTMLskills.replace("%data%", bio.Skills[skill]));
+    };
   };
 }
 
 var work = {
   "jobs": [{
     "jobposition": "Consultant",
-    "employer": "ACL",
-    "years": "09/2014 - heute",
+    "employer": "Averroes Concept Lounge GmbH",
+    "years": "09/2014 - today",
     "location": "Frankfurt am Main",
-    "Description": "Bla"
+    "Description": "Averroes Concept Lounge GmbH has been working as an independent " +
+      "consultancy firm of economists and IT experts since 2001. Averroes Concept Lounge GmbH " +
+      "consults asset management companies, asset managers, custodian banks / global custodians, " +
+      "insourcing and outsourcing companies, sell-side and buy-side analysts and software manufacturers." +
+      "Averroes Concept Lounge GmbH is also vendor of the FundDesigner a Software which helps with the " +
+      "organisation of contractual and operational requirements for the fund administration. Standardised " +
+      "and individual requirements for the fund administration are clearly visible to all parties. " +
+      "This creates transparency of fund administration costs, degree of automatic processing in the " +
+      "fund administration systems and operational risks."
   }, {
     "jobposition": "Consultant",
-    "employer": "Princeton Financial systems GmbH",
+    "employer": "Princeton Financial Systems GmbH",
     "years": "09/2011 – 09/2014",
     "location": "Frankfurt am Main",
-    "Description": "Projekte zur Implementierung von MIG21 7.4 Projekte zur Migration von MIG21 6.1 zu 7.4Implementierung verschiedener MIG21 UCITS IV Lawcards (Deutschland, Frankreich, Italien). Entwicklung einer PL/SQL-Lösung zur Berechnung von Dachfondsbeständen. Entwicklung diverser Reports mit MIG21 Report Center"
+    "Description": "Princeton Financial Systems, a part of State Street Corporation’s " +
+      "(NYSE: STT) Global Exchange, is a leading provider of comprehensive, front to back " +
+      "office solutions to several of the top asset managers, insurance companies, custodians, " +
+      "pension funds, and banks spanning the world. Princeton’s software solutions provide " +
+      "clients with the technology and services they need to reduce risk, improve efficiency, " +
+      "and provide transparency throughout the investment lifecycle."
+  }, , {
+    "jobposition": "Consultant",
+    "employer": "Commit GmbH",
+    "years": "09/2011 – 09/2014",
+    "location": "Frankfurt am Main",
+    "Description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod " +
+      "tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At " +
+      "vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, " +
+      "no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, " +
+      "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et " +
+      "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo " +
+      "dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem " +
+      "ipsum dolor sit amet."
   }]
+}
+
+work.display = function() {
+  if (work.jobs.length > 0) {
+    for (job in work.jobs) {
+      $("#workExperience").append(HTMLworkStart);
+      $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", work.jobs[job]
+        .employer) + HTMLworkTitle.replace("%data%", work.jobs[job].jobposition));
+      $(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[job].location));
+      $(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].years));
+      $(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].Description));
+    };
+  };
 }
 
 var projects = {
   "project": [{
-    "name": "Bla",
-    "description": "Bla",
+    "name": "First project",
+    "description": "Migration of investment guideline compliance rules from Charles River to BRS Aladdin Compliance Workbench.",
     "year": 2014,
-    "projectImage": "images/fry.jpg"
+    "projectImage": "images/197x148.gif"
   }, {
-    "name": "Bla 2",
-    "description": "Bla",
+    "name": "Second project",
+    "description": "Projekte zur Implementierung von MIG21 7.4 " +
+      "Projekte zur Migration von MIG21 6.1 zu 7.4" +
+      "Implementierung verschiedener MIG21 UCITS IV Lawcards (Deutschland, Frankreich, Italien). " +
+      "Entwicklung einer PL/SQL-Lösung zur Berechnung von Dachfondsbeständen. " +
+      "Entwicklung diverser Reports mit MIG21 Report Center",
     "year": 2014,
-    "projectImage": "images/fry.jpg"
+    "projectImage": "images/197x148.gif"
+  }, {
+    "name": "Third project",
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod " +
+      "tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At " +
+      "vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, " +
+      "no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, " +
+      "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et " +
+      "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo " +
+      "dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem " +
+      "ipsum dolor sit amet.",
+    "year": 2014,
+    "projectImage": "images/197x148.gif"
   }],
   "display": function() {
     for (project in projects.project) {
@@ -79,12 +143,11 @@ var education = {
     "degree": "Fachhochschulreife",
     "major": "Maschinenbau"
   }],
-  "online courses": [{
-    "name": "Udacity",
-    "location": "world wide web",
-    "dates": 2015,
-    "degree": "Nano Degree Web Frontend Developer",
-    "major": "Web Frontend Developer"
+  "onlineCourses": [{
+    "school": "Udacity",
+    "url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001",
+    "date": 2015,
+    "title": "Nano Degree Web Frontend Developer"
   }]
 };
 
@@ -99,26 +162,15 @@ education.display = function() {
       $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[school].major));
     };
   };
-}
-
-bio.displayskills = function (){
-if (bio.Skills.length > 0) {
-  $("#header").append(HTMLskillsStart);
-  for (skill in bio.Skills) {
-    $("#skills").append(HTMLskills.replace("%data%", bio.Skills[skill]));
-  };
-};
-}
-
-work.display = function() {
-  if (work.jobs.length > 0) {
-    for (job in work.jobs) {
-      $("#workExperience").append(HTMLworkStart);
-      $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", work.jobs[job]
-        .employer) + HTMLworkTitle.replace("%data%", work.jobs[job].jobposition));
-      $(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[job].location));
-      $(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].years));
-      $(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].Description));
+  if (education.onlineCourses.length > 0) {
+    //$("#education").append(HTMLschoolStart);
+    $("#education").append(HTMLonlineClasses);
+    $("#education").append(HTMLschoolStart);
+    for (course in education.onlineCourses) {
+      $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title) +
+        HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school));
+      $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.onlineCourses[course].date));
+      $(".education-entry:last").append(HTMLonlineURL.replace("%data%", education.onlineCourses[course].url));
     };
   };
 }
@@ -137,35 +189,10 @@ $("#mapDiv").append(googleMap);
 
 $("#main").append(internationalizeButton);
 
-function inName(Name) {
-  intName = Name.split(" ");
-  intName[1] = intName[1].toUpperCase();
-  return intName[0].slice(0, 1).toUpperCase + intName[0].slice(0, 1).toLowerCase + " " + intName[1];
-}
-/*
-var formattedName = HTMLheaderName.replace("%data%", bio.Name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.Role);
-var formatedMobile = HTMLcontactGeneric.replace("%data%", bio.Contacts.mobile);
-formatedMobile = formatedMobile.replace("%contact%", "mobile");
-var formatedpicurl = HTMLbioPic.replace("%data%", bio.bioPic);
-var formatedwelcomeMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-var formatedSkills = HTMLskills.replace("%data%", bio.Skills[1]);
-var formatedEmployer = HTMLworkEmployer.replace("%data%",work.employer);
-var formatedYears = HTMLworkDates.replace("%data%",work.years);
-var formatedWorkLocation = HTMLworkLocation.replace("%data%",work.location);
-var formatedSchoolName = HTMLschoolName.replace("%data%",education["School"]);
+var Name = bio.Name;
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#topContacts").prepend(formatedMobile);
-$("#header").append(formatedpicurl);
-$("#header").append(formatedwelcomeMessage);
-$("#header").append(HTMLskillsStart);
-$("#skills").append(formatedSkills);
-$("#header").append(HTMLworkStart);
-$("#workExperience").append(formatedEmployer);
-$("#workExperience").append(formatedYears);
-$("#workExperience").append(formatedWorkLocation);
-$("#header").append(HTMLschoolStart);
-$("#education").append(formatedSchoolName);
-*/
+function inName(Name) {
+  Name = Name.split(" ");
+  Name[1] = Name[1].toUpperCase();
+  return Name[0].slice(0, 1).toUpperCase() + Name[0].slice(1, Name[0].length).toLowerCase() + " " + Name[1];
+}
