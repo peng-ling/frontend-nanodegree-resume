@@ -11,28 +11,30 @@ var bio = {
   "bioPic": "images/paul.jpg",
   "welcomeMessage": "Hello World, here I am",
   "Skills": ["MIG21", "PL/SQL", "DMS", "XML / XSLT", "VBA", "C# code snippets", "KAG- und Depotbankprozesse", "Wertpapierkenntnisse inkl. Termin- und Devisengeschäfte", "SWIFT", "FundsXML", "FundDesigner"]
-}
+};
 
 bio.displaycontacts = function() {
   $("#header").prepend(HTMLheaderName.replace("%data%", bio.Name));
   $("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
   $("#header").prepend(HTMLheaderRole.replace("%data%", bio.Role));
-  for (contact in bio.contacts) {
-    var formatedHTMLcontactGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts[contact]);
-    formatedHTMLcontactGeneric = formatedHTMLcontactGeneric.replace("%contact%", contact);
-    $("#topContacts").prepend(formatedHTMLcontactGeneric);
-    $("#footerContacts").prepend(formatedHTMLcontactGeneric);
-  };
-}
+  if (bio.contacts.length > 0) {
+    for (var contact in bio.contacts) {
+      var formatedHTMLcontactGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts[contact]);
+      formatedHTMLcontactGeneric = formatedHTMLcontactGeneric.replace("%contact%", contact);
+      $("#topContacts").prepend(formatedHTMLcontactGeneric);
+      $("#footerContacts").prepend(formatedHTMLcontactGeneric);
+    }
+  }
+};
 
 bio.displayskills = function() {
   if (bio.Skills.length > 0) {
     $("#header").append(HTMLskillsStart);
-    for (skill in bio.Skills) {
+    for (var skill in bio.Skills) {
       $("#skills").append(HTMLskills.replace("%data%", bio.Skills[skill]));
-    };
-  };
-}
+    }
+  }
+};
 
 var work = {
   "jobs": [{
@@ -60,7 +62,7 @@ var work = {
       "pension funds, and banks spanning the world. Princeton’s software solutions provide " +
       "clients with the technology and services they need to reduce risk, improve efficiency, " +
       "and provide transparency throughout the investment lifecycle."
-  }, , {
+  }, {
     "jobposition": "Consultant",
     "employer": "Commit GmbH",
     "years": "09/2011 – 09/2014",
@@ -74,20 +76,20 @@ var work = {
       "dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem " +
       "ipsum dolor sit amet."
   }]
-}
+};
 
 work.display = function() {
   if (work.jobs.length > 0) {
-    for (job in work.jobs) {
+    for (var job in work.jobs) {
       $("#workExperience").append(HTMLworkStart);
       $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", work.jobs[job]
         .employer) + HTMLworkTitle.replace("%data%", work.jobs[job].jobposition));
       $(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[job].location));
       $(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].years));
       $(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].Description));
-    };
-  };
-}
+    }
+  }
+};
 
 var projects = {
   "project": [{
@@ -118,7 +120,8 @@ var projects = {
     "projectImage": "images/197x148.gif"
   }],
   "display": function() {
-    for (project in projects.project) {
+    if (projects.project.length > 0){
+    for (var project in projects.project) {
       $("#projects").append(HTMLprojectStart);
       $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.project[project].name));
       $(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.project[project].year));
@@ -126,6 +129,7 @@ var projects = {
       $(".project-entry:last").append(HTMLprojectImage.replace("%data%", projects.project[project].projectImage));
     }
   }
+}
 };
 
 var education = {
@@ -154,26 +158,26 @@ var education = {
 education.display = function() {
   if (education.schools.length > 0) {
     $("#education").append(HTMLschoolStart);
-    for (school in education.schools) {
+    for (var school in education.schools) {
       $(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[school].name));
       $(".education-entry:last").append(HTMLschoolDegree.replace("%data%", education.schools[school].degree));
       $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[school].dates));
       $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[school].location));
       $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[school].major));
-    };
-  };
+    }
+  }
   if (education.onlineCourses.length > 0) {
     //$("#education").append(HTMLschoolStart);
     $("#education").append(HTMLonlineClasses);
     $("#education").append(HTMLschoolStart);
-    for (course in education.onlineCourses) {
+    for (var course in education.onlineCourses) {
       $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title) +
         HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school));
       $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.onlineCourses[course].date));
       $(".education-entry:last").append(HTMLonlineURL.replace("%data%", education.onlineCourses[course].url));
-    };
-  };
-}
+    }
+  }
+};
 
 bio.displaycontacts();
 bio.displayskills();
