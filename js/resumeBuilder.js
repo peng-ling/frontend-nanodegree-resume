@@ -17,7 +17,7 @@ bio.displaycontacts = function() {
   $("#header").prepend(HTMLheaderName.replace("%data%", bio.Name));
   $("#header").append(HTMLbioPic.replace(/%data%/g, bio.bioPic));
   $("#header").prepend(HTMLheaderRole.replace("%data%", bio.Role));
-  if (bio.contacts.length > 0) {
+  if (bio.contacts !== undefined) {
     for (var contact in bio.contacts) {
       var formatedHTMLcontactGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts[contact]);
       formatedHTMLcontactGeneric = formatedHTMLcontactGeneric.replace("%contact%", contact);
@@ -120,16 +120,16 @@ var projects = {
     "projectImage": "images/197x148.gif"
   }],
   "display": function() {
-    if (projects.project.length > 0){
-    for (var project in projects.project) {
-      $("#projects").append(HTMLprojectStart);
-      $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.project[project].name));
-      $(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.project[project].year));
-      $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.project[project].description));
-      $(".project-entry:last").append(HTMLprojectImage.replace(/%data%/g, projects.project[project].projectImage));
+    if (projects.project.length > 0) {
+      for (var project in projects.project) {
+        $("#projects").append(HTMLprojectStart);
+        $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.project[project].name));
+        $(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.project[project].year));
+        $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.project[project].description));
+        $(".project-entry:last").append(HTMLprojectImage.replace(/%data%/g, projects.project[project].projectImage));
+      }
     }
   }
-}
 };
 
 var education = {
