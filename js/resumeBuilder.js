@@ -1,6 +1,8 @@
+var data = '%data%';
+
 var bio = {
-  "Name": "Paul Engling",
-  "Role": "Dipl. Ing.",
+  "name": "Paul Engling",
+  "role": "Dipl. Ing.",
   "contacts": {
     "mobile": "650-555-555",
     "email": "no@realemail.com",
@@ -8,41 +10,40 @@ var bio = {
     "twitter": "paul.engling",
     "location": "Wiesbaden"
   },
-  "bioPic": "images/paul.jpg",
+  "biopic": "images/paul.jpg",
   "welcomeMessage": "Hello World, here I am",
-  "Skills": ["MIG21", "PL/SQL", "DMS", "XML / XSLT", "VBA", "C# code snippets", "KAG- und Depotbankprozesse", "Wertpapierkenntnisse inkl. Termin- und Devisengeschäfte", "SWIFT", "FundsXML", "FundDesigner"]
+  "skills": ["MIG21", "PL/SQL", "DMS", "XML / XSLT", "VBA", "C# code snippets", "KAG- und Depotbankprozesse", "Wertpapierkenntnisse inkl. Termin- und Devisengeschäfte", "SWIFT", "FundsXML", "FundDesigner"]
 };
 
-bio.displaycontacts = function() {
-  $("#header").prepend(HTMLheaderName.replace("%data%", bio.Name));
-  $("#header").append(HTMLbioPic.replace(/%data%/g, bio.bioPic));
-  $("#header").prepend(HTMLheaderRole.replace("%data%", bio.Role));
+bio.display = function() {
+  $("#header").prepend(HTMLheaderName.replace(data, bio.name));
+  $("#header").append(HTMLbioPic.replace(/%data%/g, bio.biopic));
+  $("#header").prepend(HTMLheaderRole.replace(data, bio.role));
   if (bio.contacts !== undefined) {
     for (var contact in bio.contacts) {
-      var formatedHTMLcontactGeneric = HTMLcontactGeneric.replace("%data%", bio.contacts[contact]);
-      formatedHTMLcontactGeneric = formatedHTMLcontactGeneric.replace("%contact%", contact);
-      $("#topContacts").prepend(formatedHTMLcontactGeneric);
-      $("#footerContacts").prepend(formatedHTMLcontactGeneric);
+      if (bio.contacts.hasOwnProperty(contact)) {
+        var formatedHTMLcontactGeneric = HTMLcontactGeneric.replace(data, bio.contacts[contact]);
+        formatedHTMLcontactGeneric = formatedHTMLcontactGeneric.replace("%contact%", contact);
+        $("#topContacts").prepend(formatedHTMLcontactGeneric);
+        $("#footerContacts").prepend(formatedHTMLcontactGeneric);
+      }
     }
   }
-};
-
-bio.displayskills = function() {
-  if (bio.Skills.length > 0) {
+  if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
-    for (var skill in bio.Skills) {
-      $("#skills").append(HTMLskills.replace("%data%", bio.Skills[skill]));
-    }
+    bio.skills.forEach(function(val) {
+      $("#skills").append(HTMLskills.replace(data, val));
+    });
   }
 };
 
 var work = {
   "jobs": [{
-    "jobposition": "Consultant",
+    "title": "Consultant",
     "employer": "Averroes Concept Lounge GmbH",
-    "years": "09/2014 - today",
+    "dates": "09/2014 - today",
     "location": "Frankfurt am Main",
-    "Description": "Averroes Concept Lounge GmbH has been working as an independent " +
+    "description": "Averroes Concept Lounge GmbH has been working as an independent " +
       "consultancy firm of economists and IT experts since 2001. Averroes Concept Lounge GmbH " +
       "consults asset management companies, asset managers, custodian banks / global custodians, " +
       "insourcing and outsourcing companies, sell-side and buy-side analysts and software manufacturers." +
@@ -52,22 +53,22 @@ var work = {
       "This creates transparency of fund administration costs, degree of automatic processing in the " +
       "fund administration systems and operational risks."
   }, {
-    "jobposition": "Consultant",
+    "title": "Consultant",
     "employer": "Princeton Financial Systems GmbH",
-    "years": "09/2011 – 09/2014",
+    "dates": "09/2011 – 09/2014",
     "location": "Frankfurt am Main",
-    "Description": "Princeton Financial Systems, a part of State Street Corporation’s " +
+    "description": "Princeton Financial Systems, a part of State Street Corporation’s " +
       "(NYSE: STT) Global Exchange, is a leading provider of comprehensive, front to back " +
       "office solutions to several of the top asset managers, insurance companies, custodians, " +
       "pension funds, and banks spanning the world. Princeton’s software solutions provide " +
       "clients with the technology and services they need to reduce risk, improve efficiency, " +
       "and provide transparency throughout the investment lifecycle."
   }, {
-    "jobposition": "Consultant",
+    "title": "Consultant",
     "employer": "Commit GmbH",
-    "years": "09/2011 – 09/2014",
+    "dates": "09/2011 – 09/2014",
     "location": "Frankfurt am Main",
-    "Description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod " +
+    "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod " +
       "tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At " +
       "vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, " +
       "no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, " +
@@ -81,33 +82,35 @@ var work = {
 work.display = function() {
   if (work.jobs.length > 0) {
     for (var job in work.jobs) {
-      $("#workExperience").append(HTMLworkStart);
-      $(".work-entry:last").append(HTMLworkEmployer.replace("%data%", work.jobs[job]
-        .employer) + HTMLworkTitle.replace("%data%", work.jobs[job].jobposition));
-      $(".work-entry:last").append(HTMLworkLocation.replace("%data%", work.jobs[job].location));
-      $(".work-entry:last").append(HTMLworkDates.replace("%data%", work.jobs[job].years));
-      $(".work-entry:last").append(HTMLworkDescription.replace("%data%", work.jobs[job].Description));
+      if (work.jobs.hasOwnProperty(job)) {
+        $("#workExperience").append(HTMLworkStart);
+        $(".work-entry:last").append(HTMLworkEmployer.replace(data, work.jobs[job]
+          .employer) + HTMLworkTitle.replace(data, work.jobs[job].title));
+        $(".work-entry:last").append(HTMLworkLocation.replace(data, work.jobs[job].location));
+        $(".work-entry:last").append(HTMLworkDates.replace(data, work.jobs[job].dates));
+        $(".work-entry:last").append(HTMLworkDescription.replace(data, work.jobs[job].description));
+      }
     }
   }
 };
 
 var projects = {
   "project": [{
-    "name": "First project",
+    "title": "First project",
     "description": "Migration of investment guideline compliance rules from Charles River to BRS Aladdin Compliance Workbench.",
-    "year": 2014,
-    "projectImage": "images/197x148.gif"
+    "dates": "2014",
+    "images": ["images/197x148.gif", "images/197x148.gif", "images/197x148.gif"]
   }, {
-    "name": "Second project",
+    "title": "Second project",
     "description": "Projekte zur Implementierung von MIG21 7.4 " +
       "Projekte zur Migration von MIG21 6.1 zu 7.4" +
       "Implementierung verschiedener MIG21 UCITS IV Lawcards (Deutschland, Frankreich, Italien). " +
       "Entwicklung einer PL/SQL-Lösung zur Berechnung von Dachfondsbeständen. " +
       "Entwicklung diverser Reports mit MIG21 Report Center",
-    "year": 2014,
-    "projectImage": "images/197x148.gif"
+    "dates": "2014",
+    "images": ["images/197x148.gif", "images/197x148.gif", "images/197x148.gif"]
   }, {
-    "name": "Third project",
+    "title": "Third project",
     "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod " +
       "tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At " +
       "vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, " +
@@ -116,17 +119,23 @@ var projects = {
       "dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo " +
       "dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem " +
       "ipsum dolor sit amet.",
-    "year": 2014,
-    "projectImage": "images/197x148.gif"
+    "dates": "2014",
+    "images": ["images/197x148.gif", "images/197x148.gif", "images/197x148.gif"]
   }],
   "display": function() {
     if (projects.project.length > 0) {
       for (var project in projects.project) {
-        $("#projects").append(HTMLprojectStart);
-        $(".project-entry:last").append(HTMLprojectTitle.replace("%data%", projects.project[project].name));
-        $(".project-entry:last").append(HTMLprojectDates.replace("%data%", projects.project[project].year));
-        $(".project-entry:last").append(HTMLprojectDescription.replace("%data%", projects.project[project].description));
-        $(".project-entry:last").append(HTMLprojectImage.replace(/%data%/g, projects.project[project].projectImage));
+        if (projects.project.hasOwnProperty(project)) {
+          $("#projects").append(HTMLprojectStart);
+          $(".project-entry:last").append(HTMLprojectTitle.replace(data, projects.project[project].title));
+          $(".project-entry:last").append(HTMLprojectDates.replace(data, projects.project[project].dates));
+          $(".project-entry:last").append(HTMLprojectDescription.replace(data, projects.project[project].description));
+          if (projects.project[project].images !== undefined) {
+            projects.project[project].images.forEach(function(val) {
+              $(".project-entry:last").append(HTMLprojectImage.replace(/%data%/g, val));
+            });
+          }
+        }
       }
     }
   }
@@ -135,17 +144,18 @@ var projects = {
 var education = {
   "schools": [{
     "name": "Fachhochschule Wiesbaden",
-    "dates": 2002,
     "location": "Wiesbaden",
     "degree": "Bauingenieur",
-    "major": "Diplom Bauingenieur (FH)"
+    "majors": "Diplom Bauingenieur (FH)",
+    "dates": "2002",
+    "url": "https://www.hs-rm.de/fab/startseite/index.html"
   }, {
     "name": "Friedrich-Ebert-Schule Wiesbaden",
-    "city": "Wiesbaden",
-    "dates": 1993,
     "location": "Wiesbaden",
     "degree": "Fachhochschulreife",
-    "major": "Maschinenbau"
+    "majors": "Maschinenbau",
+    "dates": "1993",
+    "url": "http://www.fes-wbn.de/"
   }],
   "onlineCourses": [{
     "school": "Udacity",
@@ -159,11 +169,13 @@ education.display = function() {
   if (education.schools.length > 0) {
     $("#education").append(HTMLschoolStart);
     for (var school in education.schools) {
-      $(".education-entry:last").append(HTMLschoolName.replace("%data%", education.schools[school].name));
-      $(".education-entry:last").append(HTMLschoolDegree.replace("%data%", education.schools[school].degree));
-      $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.schools[school].dates));
-      $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.schools[school].location));
-      $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.schools[school].major));
+      if (education.schools.hasOwnProperty(school)) {
+        $(".education-entry:last").append(HTMLschoolName.replace(data, education.schools[school].name).replace("#", education.schools[school].url));
+        $(".education-entry:last").append(HTMLschoolDegree.replace(data, education.schools[school].degree));
+        $(".education-entry:last").append(HTMLschoolDates.replace(data, education.schools[school].dates));
+        $(".education-entry:last").append(HTMLschoolLocation.replace(data, education.schools[school].location));
+        $(".education-entry:last").append(HTMLschoolMajor.replace(data, education.schools[school].majors));
+      }
     }
   }
   if (education.onlineCourses.length > 0) {
@@ -171,16 +183,17 @@ education.display = function() {
     $("#education").append(HTMLonlineClasses);
     $("#education").append(HTMLschoolStart);
     for (var course in education.onlineCourses) {
-      $(".education-entry:last").append(HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title) +
-        HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school));
-      $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.onlineCourses[course].date));
-      $(".education-entry:last").append(HTMLonlineURL.replace("%data%", education.onlineCourses[course].url));
+      if (education.onlineCourses.hasOwnProperty(course)) {
+        $(".education-entry:last").append(HTMLonlineTitle.replace(data, education.onlineCourses[course].title) +
+          HTMLonlineSchool.replace(data, education.onlineCourses[course].school));
+        $(".education-entry:last").append(HTMLschoolDates.replace(data, education.onlineCourses[course].date));
+        $(".education-entry:last").append(HTMLonlineURL.replace(data, education.onlineCourses[course].url));
+      }
     }
   }
 };
 
-bio.displaycontacts();
-bio.displayskills();
+bio.display();
 education.display();
 projects.display();
 work.display();
@@ -193,7 +206,7 @@ $("#mapDiv").append(googleMap);
 
 $("#main").append(internationalizeButton);
 
-var Name = bio.Name;
+var Name = bio.name;
 
 function inName(Name) {
   Name = Name.split(" ");
